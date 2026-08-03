@@ -6,14 +6,16 @@ let
 
 in
 {
-  imports =
-    [ 
-      # Import nixos-hardware
-      "${builtins.fetchGit { url = "https://github.com/NIXOS/nixos-hardware.git"; }}/acer/predator/helios/300/ph315-51"
+  imports =  [
+    # Battery Guard module
+    ./battery-guard.nix
 
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+    # Import nixos-hardware
+    "${builtins.fetchGit { url = "https://github.com/NIXOS/nixos-hardware.git"; }}/acer/predator/helios/300/ph315-51"
+
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
